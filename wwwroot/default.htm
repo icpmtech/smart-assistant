@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Chat Bot</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Segoe UI;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        header {
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: right;
+            background-color: #e05555;
+            width: 100%;
+            font-size: 44px;
+            height: 100px;
+            color: white;
+            padding: 30px 0 40px 0px;
+            display: inline-block;
+        }
+
+        .header-icon {
+            background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%20150.2%20125%22%20style%3D%22enable-background%3Anew%200%200%20150.2%20125%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cstyle%20type%3D%22text/css%22%3E%0A%09.st0%7Bfill%3Anone%3B%7D%0A%09.st1%7Bfill%3A%23FFFFFF%3B%7D%0A%3C/style%3E%0A%3Crect%20x%3D%220.5%22%20class%3D%22st0%22%20width%3D%22149.7%22%20height%3D%22125%22/%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M59%2C102.9L21.8%2C66c-3.5-3.5-3.5-9.1%2C0-12.5l37-36.5l2.9%2C3l-37%2C36.4c-1.8%2C1.8-1.8%2C4.7%2C0%2C6.6l37.2%2C37L59%2C102.9z%22%0A%09%09/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M92.5%2C102.9l-3-3l37.2-37c0.9-0.9%2C1.4-2%2C1.4-3.3c0-1.2-0.5-2.4-1.4-3.3L89.5%2C20l2.9-3l37.2%2C36.4%0A%09%09c1.7%2C1.7%2C2.6%2C3.9%2C2.6%2C6.3s-0.9%2C4.6-2.6%2C6.3L92.5%2C102.9z%22/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M90.1%2C68.4c-4.5%2C0-8-3.5-8-8.1c0-4.5%2C3.5-8.1%2C8-8.1c4.4%2C0%2C8%2C3.7%2C8%2C8.1C98.1%2C64.7%2C94.4%2C68.4%2C90.1%2C68.4z%0A%09%09%20M90.1%2C56.5c-2.2%2C0-3.8%2C1.7-3.8%2C3.9c0%2C2.2%2C1.7%2C3.9%2C3.8%2C3.9c1.9%2C0%2C3.8-1.6%2C3.8-3.9S91.9%2C56.5%2C90.1%2C56.5z%22/%3E%0A%3C/g%3E%0A%3Cg%3E%0A%09%3Cpath%20class%3D%22st1%22%20d%3D%22M61.4%2C68.4c-4.5%2C0-8-3.5-8-8.1c0-4.5%2C3.5-8.1%2C8-8.1c4.4%2C0%2C8%2C3.7%2C8%2C8.1C69.5%2C64.7%2C65.8%2C68.4%2C61.4%2C68.4z%0A%09%09%20M61.4%2C56.5c-2.2%2C0-3.8%2C1.7-3.8%2C3.9c0%2C2.2%2C1.7%2C3.9%2C3.8%2C3.9c1.9%2C0%2C3.8-1.6%2C3.8-3.9S63.3%2C56.5%2C61.4%2C56.5z%22/%3E%0A%3C/g%3E%0A%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            float: left;
+            height: 100px;
+            width: 140px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-text {
+            padding-left: 1%;
+            color: #FFFFFF;
+            font-family: "Segoe UI";
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 0.35px;
+            line-height: 96px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-inner-container {
+            min-width: 480px;
+            max-width: 1366px;
+            margin-left: auto;
+            margin-right: auto;
+            vertical-align: middle;
+        }
+
+        .header-inner-container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .main-content-area {
+            padding-left: 30px;
+        }
+
+        .content-title {
+            color: #000000;
+            font-family: "Segoe UI";
+            font-size: 46px;
+            font-weight: 300;
+            line-height: 62px;
+        }
+
+        .main-text {
+            color: #808080;
+            font-size: 24px;
+            font-family: "Segoe UI";
+            font-size: 24px;
+            font-weight: 200;
+            line-height: 32px;
+        }
+
+        .main-text-p1{
+            padding-top: 48px;
+            padding-bottom: 28px;
+        }
+
+        .endpoint {
+           height: 32px;
+           width: 571px;
+           color: #808080;
+           font-family: "Segoe UI";
+           font-size: 24px;
+           font-weight: 200;
+           line-height: 32px;
+           padding-top: 28px;
+        }
+
+        .how-to-build-section {
+            padding-top: 20px;
+            padding-left: 30px;
+        }
+
+        .how-to-build-section>h3 {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.35px;
+            line-height: 22px;
+            margin: 0 0 24px 0;
+            text-transform: uppercase;
+        }
+
+        .step-container {
+            display: flex;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .step-container dl {
+            border-left: 1px solid #A0A0A0;
+            display: block;
+            padding: 0 24px;
+            margin: 0;
+        }
+
+        .step-container dl>dt::before {
+            background-color: white;
+            border: 1px solid #A0A0A0;
+            border-radius: 100%;
+            content: '';
+            left: 47px;
+            height: 11px;
+            position: absolute;
+            width: 11px;
+        }
+
+        .step-container dl>.test-bullet::before {
+            background-color: blue;
+        }
+
+        .step-container dl>dt {
+            display: block;
+            font-size: inherit;
+            font-weight: bold;
+            line-height: 20px;
+        }
+
+        .step-container dl>dd {
+            font-size: inherit;
+            line-height: 20px;
+            margin-left: 0;
+            padding-bottom: 32px;
+        }
+
+        .step-container:last-child dl {
+            border-left: 1px solid transparent;
+        }
+
+        .ctaLink {
+            background-color: transparent;
+            border: 1px solid transparent;
+            color: #006AB1;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            white-space: normal;
+        }
+
+        .ctaLink:focus {
+            outline: 1px solid #00bcf2;
+        }
+
+        .ctaLink:hover {
+            text-decoration: underline;
+        }
+
+        .step-icon {
+            display: flex;
+            height: 38px;
+            margin-right: 15px;
+            width: 38px;
+        }
+
+        .step-icon>div {
+            height: 30px;
+            width: 30px;
+            background-repeat: no-repeat;
+        }
+
+        .ms-logo-container {
+            min-width: 580px;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            transition: bottom 400ms;
+        }
+
+        .ms-logo {
+            float: right;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0bEtjaFh07O3op5Vrb9MwXf1W9LlibV-4JWKCDCzBRO2fwYKP");
+        }
+
+        .ms-logo-container>div {
+            min-height: 260px;
+            width: 300px;
+            background-repeat: no-repeat;
+        }
+
+        .row {
+            padding: 10px 0px 0 20px;
+            min-width: 480px;
+            max-width: 1366px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .column {
+            float: left;
+            width: 45%;
+            padding-right: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .download-the-emulator {
+            height: 20px;
+            color: #0063B1;
+            font-size: 15px;
+            line-height: 20px;
+            padding-bottom: 70px;
+        }
+
+        .how-to-iframe {
+            max-width: 700px !important;
+            min-width: 650px !important;
+            height: 700px !important;
+        }
+
+        .remove-frame-height {
+            height: 10px;
+        }
+
+        @media only screen and (max-width: 1300px) {
+            .ms-logo {
+                padding-top: 30px;
+            }
+
+            .header-text {
+                font-size: 40x;
+            }
+
+            .column {
+                float: none;
+                padding-top: 30px;
+                width: 100%;
+            }
+
+            .ms-logo-container {
+                padding-top: 30px;
+                min-width: 480px;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .row {
+                padding: 20px 0px 0 20px;
+                min-width: 480px;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media only screen and (max-width: 1370px) {
+            header {
+                background-color: #e05555;
+                background-size: auto 200px;
+            }
+        }
+
+        @media only screen and (max-width: 1230px) {
+            header {
+                background-color: #e05555;
+                background-size: auto 200px;
+            }
+
+            .header-text {
+                font-size: 44px;
+            }
+
+            .header-icon {
+                height: 120px;
+                width: 120px;
+            }
+        }
+
+        @media only screen and (max-width: 1000px) {
+            header {
+                background-color: #e05555;
+                background-image: none;
+            }
+        }
+
+        @media only screen and (max-width: 632px) {
+            .header-text {
+                font-size: 32px;
+            }
+
+            .row {
+                padding: 10px 0px 0 10px;
+                max-width: 490px !important;
+                min-width: 410px !important;
+            }
+
+            .endpoint {
+                font-size: 25px;
+            }
+
+            .main-text {
+                font-size: 20px;
+            }
+
+            .step-container dl>dd {
+                font-size: 14px;
+            }
+
+            .column {
+                padding-right: 5px;
+            }
+
+            .header-icon {
+                height: 110px;
+                width: 110px;
+            }
+
+            .how-to-iframe {
+                max-width: 480px !important;
+                min-width: 400px !important;
+                height: 650px !important;
+                overflow: hidden;
+            }
+        }
+
+        .remove-frame-height {
+            max-height: 10px;
+        }
+    </style>
+   
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner-container">
+            <div class="header-icon" style="display: inline-block"></div>
+            <div class="header-text" style="display: inline-block">Tutorial Chat Bot</div>
+            <div class="header-text" style="display: inline-block">
+                
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="column">
+            <iframe src='https://webchat.botframework.com/embed/smart-assistant-bot?s=jQljTwuuAbY.m8v9-2i5hrdModdz2BiAlE5mYho6nZdOieRhGHEd70w' style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
+        </div>
+      
+    </div>
+   
+</body>
+</html>
