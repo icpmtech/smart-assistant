@@ -4,3 +4,4 @@ obj/**
 bin/**
 runtimes/**
 /.vs/QnABot/v15
+/.vs/QnABot/v16/Server/sqlite3

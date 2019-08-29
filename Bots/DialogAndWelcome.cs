@@ -22,7 +22,7 @@ namespace Tutorial.Bot
         }
 
         // Messages sent to the user.
-        private const string WelcomeMessage = @" bem vindo! Faz me tuas perguntas?";
+        private const string WelcomeMessage = @" well come! Make your question please?";
 
       
 
@@ -40,7 +40,7 @@ namespace Tutorial.Bot
                     var welcomeCard = CreateAdaptiveCardAttachment();
                     var response = CreateResponse(turnContext.Activity, welcomeCard);
                     await turnContext.SendActivityAsync(response, cancellationToken);
-                    await turnContext.SendActivityAsync($"Olá - {member.Name}{WelcomeMessage}", cancellationToken: cancellationToken);
+                    await turnContext.SendActivityAsync($"Hello - {member.Name}{WelcomeMessage}", cancellationToken: cancellationToken);
                  
                     
                 }

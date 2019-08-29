@@ -32,7 +32,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "Assistente de ajuda a esclarecer Faqs.\nEstou aqui para te ajudar te apoiar.Por isso pergunta.",
+      "text": "I am the smart assistant Faqs.\nI am here to support you.Make me your questions!",
       "wrap": true
     }
   ],

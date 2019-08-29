@@ -41,7 +41,7 @@ namespace Tutorial.Bot
         {
             var userInfo = (UserProfile)stepContext.Result;
             userInfo.Name=stepContext.Context.Activity.From.Name;
-            string status = "Até já "
+            string status = "See soon "
                 + userInfo.Name
                 + ".";
             await stepContext.Context.SendActivityAsync(status);

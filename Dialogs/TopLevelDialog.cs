@@ -71,7 +71,7 @@ namespace Tutorial.Bot
             var userProfile = (UserProfile)stepContext.Values[UserInfo];
             // Thank them for participating.
             await stepContext.Context.SendActivityAsync(
-                MessageFactory.Text("Obrigado."),
+                MessageFactory.Text("Thank you."),
                 cancellationToken);
 
             // Exit the dialog, returning the collected user information.

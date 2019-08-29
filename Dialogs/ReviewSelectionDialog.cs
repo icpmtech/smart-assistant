@@ -28,16 +28,16 @@ namespace Tutorial.Bot
     {
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
-        private const string DoneOption = "Terminar";
+        private const string DoneOption = "Done";
         private const string NoSelected = "value-noSelected";
-        private const string PromptFirstQuestionBot = "Podes colocar a tua questão?";
-        private const string PromptSecondStepQuestionBot = "Desculpa! Ainda não te pude ajudar, podes reformular a tua questão novamente?";
-        private const string PromptThirdStepQuestionBot = "Desculpa!Ainda não te pude ajudar, mais uma tentativa podes reformular a tua questão novamente?";
+        private const string PromptFirstQuestionBot = "Make your question?";
+        private const string PromptSecondStepQuestionBot = "Sorry! I can´t hellp you,but ask again?";
+        private const string PromptThirdStepQuestionBot = "Sorry!I can´t hellp you,but ask again, more one time?";
         private const string UserInfo = "value-userInfo";
         // Define the company choices for the company selection prompt.
         private readonly string[] _satisfatoryOptions = new string[]
         {
-           "Não"
+           "No"
         };
         /// <summary>
         /// Method to make a review with the choice of the end user
@@ -135,12 +135,12 @@ namespace Tutorial.Bot
             string message;
             if (list.Count is 0)
             {
-                message = $"{stepContext.Context.Activity.From.Name } a resposta foi satisfatória, ou escolhe `{DoneOption}` para sair.";
+                message = $"{stepContext.Context.Activity.From.Name } my answer is good for you, or `{DoneOption}` to end this conversation.";
             }
             else
             {
-                message = $"{stepContext.Context.Activity.From.Name } seleccionaste **{list[0]}**. Queres colocar outra questão, " +
-                     $"ou escolhe `{DoneOption}` para sair.";
+                message = $"{stepContext.Context.Activity.From.Name } selected **{list[0]}**. Can make another question , " +
+                     $"or `{DoneOption}` for end.";
             }
 
             // Create the list of options to choose from.
@@ -149,7 +149,7 @@ namespace Tutorial.Bot
             var promptOptions = new PromptOptions
             {
                 Prompt = MessageFactory.Text(message),
-                RetryPrompt = MessageFactory.Text("Por favor, valida a tua resposta e selecciona uma das opções!"),
+                RetryPrompt = MessageFactory.Text("Please, select one option!"),
                 Choices = ChoiceFactory.ToChoices(options),
             };
 
@@ -213,7 +213,7 @@ namespace Tutorial.Bot
             var response = await qnaMaker.GetAnswersAsync(stepContext.Context);
             if (response != null && response.Length > 0)
             {
-                Activity reply = MessageFactory.Text($"{userProfile.Name} a resposta que encontrei foi:{Environment.NewLine} {response[0].Answer}");
+                Activity reply = MessageFactory.Text($"{userProfile.Name} the ansewar i found was :{Environment.NewLine} {response[0].Answer}");
 
 
                 await stepContext.Context.SendActivityAsync(reply, cancellationToken);
@@ -222,7 +222,7 @@ namespace Tutorial.Bot
             {
                 
                
-                Activity reply = MessageFactory.Text($"{userProfile.Name} não encontrei nenhuma resposta para a pergunta que fizeste.");
+                Activity reply = MessageFactory.Text($"{userProfile.Name} i not found any message.");
                 await stepContext.Context.SendActivityAsync(reply, cancellationToken);
             }
         }
@@ -376,7 +376,7 @@ namespace Tutorial.Bot
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Activity reply = MessageFactory.Text("Contacta o suporte envie te um mail com os contactos.");
+                    Activity reply = MessageFactory.Text("I send you a email  the contacts of the suuport team .");
                     await stepContext.Context.SendActivityAsync(reply, cancellationToken);
                 }
                 else
